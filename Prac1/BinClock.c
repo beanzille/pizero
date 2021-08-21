@@ -196,7 +196,7 @@ void hourInc(void){
                 //Fetch RTC Time
                 int h = hexCompensation(wiringPiI2CReadReg8(RTC, HOUR_REGISTER)); //hexCompensati$
 
-                //Account for 23hrs in a day
+                //Account for 24hrs in a day
                 if (h+1>23){
                         h=0;
                 }
@@ -227,7 +227,7 @@ void minInc(void){
                 //Convert back from dec to hex and write minute and/or hour back to RTC
                 if (m+1>59){
                         int h = hexCompensation(wiringPiI2CReadReg8(RTC, HOUR_REGISTER)) ;
-                        if (h+1>23){
+                        if (h+1>23){ //24 hrs in a day
                                 h=0;
                         }
                         else {
